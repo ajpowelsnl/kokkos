@@ -289,7 +289,9 @@ struct TestReducers {
       value = value || values(i);
     }
   };
+  // Evan, Amy
   static void test_sum(int N) {
+    std::cerr << "Evan , Amy, test_sum:  " << N << std::endl;
     Kokkos::View<Scalar*, ExecSpace> values("Values", N);
     auto h_values        = Kokkos::create_mirror_view(values);
     Scalar reference_sum = 0;

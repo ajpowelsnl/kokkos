@@ -81,21 +81,6 @@ TEST(TEST_CATEGORY, reducers_half_t) {
 
 // TODO: File a bug report for this?
 // This fails on the CUDA-11.0-NVCC-C++17-RDC CI check.
-TEST(TEST_CATEGORY, openmp_cuda11_reduction_bug_with_bhalf_t_51_56) {
- using ThisTestType = Kokkos::Experimental::bhalf_t;
- TestReducers<ThisTestType, TEST_EXECSPACE>::test_sum(50);
- TestReducers<ThisTestType, TEST_EXECSPACE>::test_sum(51);
- // For some reason commenting out reductions of 52,53,54,55 causes
- // the reduction of 56 to fail on OpenMP with Cuda/11.0
- //TestReducers<ThisTestType, TEST_EXECSPACE>::test_sum(52);
- //TestReducers<ThisTestType, TEST_EXECSPACE>::test_sum(53);
- //TestReducers<ThisTestType, TEST_EXECSPACE>::test_sum(54);
- //TestReducers<ThisTestType, TEST_EXECSPACE>::test_sum(55);
- TestReducers<ThisTestType, TEST_EXECSPACE>::test_sum(56);
-}
-
-// TODO: File a bug report for this?
-// This fails on the CUDA-11.0-NVCC-C++17-RDC CI check.
 TEST(TEST_CATEGORY, openmp_cuda11_reduction_bug_with_bhalf_t_51_52) {
  using ThisTestType = Kokkos::Experimental::bhalf_t;
  TestReducers<ThisTestType, TEST_EXECSPACE>::test_sum(50);
@@ -107,6 +92,23 @@ TEST(TEST_CATEGORY, openmp_cuda11_reduction_bug_with_bhalf_t_51_52) {
  //TestReducers<ThisTestType, TEST_EXECSPACE>::test_sum(54);
  //TestReducers<ThisTestType, TEST_EXECSPACE>::test_sum(55);
  //TestReducers<ThisTestType, TEST_EXECSPACE>::test_sum(56);
+}
+
+// Evan, Amy, put prints in TestReducers.hpp at test_sum, etc.
+// TODO: File a bug report for this?
+// This fails on the CUDA-11.0-NVCC-C++17-RDC CI check.
+TEST(TEST_CATEGORY, openmp_cuda11_reduction_bug_with_bhalf_t_51_56) {
+ using ThisTestType = Kokkos::Experimental::bhalf_t;
+ TestReducers<ThisTestType, TEST_EXECSPACE>::test_sum(50);
+ // AOIFE
+ //TestReducers<ThisTestType, TEST_EXECSPACE>::test_sum(51);
+ // For some reason commenting out reductions of 52,53,54,55 causes
+ // the reduction of 56 to fail on OpenMP with Cuda/11.0
+ //TestReducers<ThisTestType, TEST_EXECSPACE>::test_sum(52);
+ //TestReducers<ThisTestType, TEST_EXECSPACE>::test_sum(53);
+ //TestReducers<ThisTestType, TEST_EXECSPACE>::test_sum(54);
+ //TestReducers<ThisTestType, TEST_EXECSPACE>::test_sum(55);
+ TestReducers<ThisTestType, TEST_EXECSPACE>::test_sum(56);
 }
 
 TEST(TEST_CATEGORY, reducers_bhalf_t) {
